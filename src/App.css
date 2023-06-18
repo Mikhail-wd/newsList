@@ -50,7 +50,9 @@
   margin-bottom: 20px;
 }
 .content{
+  display: flex;
   margin-top: 90px;
+  flex-direction: column;
 }
 
 .card-head {

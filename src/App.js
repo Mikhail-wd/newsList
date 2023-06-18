@@ -12,6 +12,7 @@ function App() {
 
   const [thisText, textSet] = useState([]);
   const [activeButton, buttonSet] = useState(JSON.parse(localStorage.getItem('sort')))
+  const [startTimer, timerSet] = useState(false);
 
   function sorting() {
     textSet([...thisText.reverse()]);
@@ -41,6 +42,10 @@ function App() {
   };
 
   useEffect(() => {
+    if(startTimer===false) {
+      requestingData();
+      timerSet(!startTimer)
+    }
     clearInterval(timer());
     timer();
   }, []);
