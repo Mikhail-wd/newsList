@@ -60,7 +60,7 @@ function Card({ id, date, author, content, attach }) {
         </div>
       </div>
       <div className='card-body'>
-        <p>{date.slice(11, 16)}</p>
+        <p className="time">{date.slice(11, 16)}</p>
         <div>
           <p>{content}</p>
           <p> <span>Далее</span> </p>
