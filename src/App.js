@@ -2,31 +2,20 @@ import Card from "./components/card";
 import { useCallback, useEffect, useState } from "react";
 import './App.css';
 
+
 function App() {
   if (!localStorage.getItem("favorites")) {
     localStorage.setItem("favorites", "")
   }
-  if (!localStorage.getItem("sort")) {
-    localStorage.setItem("sort", false)
-  }
+
 
   const [thisText, textSet] = useState([]);
-  const [activeButton, buttonSet] = useState(JSON.parse(localStorage.getItem('sort')))
-  const [startTimer, timerSet] = useState(false);
+  const [activeButton, buttonSet] = useState("old")
+  const [startTimer, timerSet] = useState(0);
 
-  function sorting() {
-    textSet([...thisText.reverse()]);
-    buttonSet(!activeButton);
-    localStorage.setItem("sort", !activeButton);
-  }
-
-  const timer = () => {
-    setInterval(() => { requestingData() }, 5000)
-  }
-
-  const requestingData = async () => {
+  const requestingData = async (value) => {
     const url = 'http://a0830433.xsph.ru/';
-    const data = "actionName=MessagesLoad&messageId=0";
+    const data = `actionName=MessagesLoad&messageId=${value}`;
     try {
       await fetch(url, {
         method: 'POST',
@@ -36,28 +25,33 @@ function App() {
         },
         body: data,
       }).then(data => data.json())
-        .then(txt => localStorage.getItem('sort') === 'true' ? textSet([...txt.Messages.reverse()]) : textSet([...txt.Messages]))
+        .then(txt => textSet([...txt.Messages]))
     } catch (error) { console.log(error) }
 
   };
 
+  const timer = (value)=>{
+    timerSet(value)
+    if (value=== 2781) {
+    requestingData(value)
+    setInterval(() => { requestingData(value) }, 5000)
+    } else (
+      window.location.reload(true)
+    )    
+  }
+
   useEffect(() => {
-    if(startTimer===false) {
-      requestingData();
-      timerSet(!startTimer)
-    }
-    clearInterval(timer());
-    timer();
-  }, []);
+    requestingData(0)
+  }, [])
 
   return (
     <div className='wrapper'>
       <div className="control">
-        <button onClick={sorting} className={activeButton === false ? "active" : ""}>Старые сообщения </button>
-        <button onClick={sorting} className={activeButton === true ? "active" : ""}>Новые сообщения </button>
+        <button onClick={() => timer(0)} className={startTimer === 0 ? "active" : ""}>Старые сообщения </button>
+        <button onClick={() => timer(2781)} className={startTimer === 2781 ? "active" : ""}>Новые сообщения </button>
       </div>
       <div className="content">
-      <div className={thisText.length !== 0 ? "hidden" : "lds-ring" }><div></div><div></div><div></div><div></div></div>
+        <div className={thisText.length !== 0 ? "hidden" : "lds-ring"}><div></div><div></div><div></div><div></div></div>
         {thisText.map(index => <Card key={index.id}
           id={index.id}
           date={index.date}
