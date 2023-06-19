@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/newsList/static/css/main.da94870c.css",
-    "main.js": "/newsList/static/js/main.bef3217a.js",
+    "main.js": "/newsList/static/js/main.fef21408.js",
     "static/js/787.08d5b53a.chunk.js": "/newsList/static/js/787.08d5b53a.chunk.js",
     "static/media/отправить Сообщение в титр_send.svg": "/newsList/static/media/отправить Сообщение в титр_send.81ea33bab25e6e9b3ba7aae7a913b5dc.svg",
     "static/media/параметры.svg": "/newsList/static/media/параметры.21719690ea1fa3049ac03c91855a5196.svg",
@@ -10,11 +10,11 @@
     "static/media/избранное.svg": "/newsList/static/media/избранное.f4d951d7f7fed3f62c608f6ecdabcac0.svg",
     "static/media/скрыть сообщение_hide.svg": "/newsList/static/media/скрыть сообщение_hide.9594becc4fd28c7576c7eb84baf2020b.svg",
     "main.da94870c.css.map": "/newsList/static/css/main.da94870c.css.map",
-    "main.bef3217a.js.map": "/newsList/static/js/main.bef3217a.js.map",
+    "main.fef21408.js.map": "/newsList/static/js/main.fef21408.js.map",
     "787.08d5b53a.chunk.js.map": "/newsList/static/js/787.08d5b53a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.da94870c.css",
-    "static/js/main.bef3217a.js"
+    "static/js/main.fef21408.js"
   ]
 }
